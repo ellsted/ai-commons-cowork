@@ -1,0 +1,28 @@
+% Subject-tagging loop diagram used in Demo 2 (needs tikz + arrows.meta, loaded in beamer-header.tex)
+% \subjectloop{color for steps 1-5}{label for step 6}{show sources: 0/1}
+\newcommand{\subjectloop}[3]{%
+\def\loopcolor{#1}\def\looplabel{#2}\def\loopsources{#3}%
+\begin{tikzpicture}[
+  stepbox/.style={draw=\loopcolor, fill=\loopcolor!10, rounded corners=3pt, text width=3.5cm, align=center,
+               font=\scriptsize, minimum height=1.0cm, line width=0.8pt, text=statprimary},
+  human/.style={draw=statyale, fill=statyale!10, rounded corners=3pt, text width=3.5cm, align=center,
+               font=\scriptsize, minimum height=1.0cm, line width=1.2pt, text=statprimary},
+  arr/.style={-{Stealth[length=2mm]}, line width=0.9pt, statprimary!55},
+  src/.style={font=\tiny\ttfamily, text=statprimary!70, fill=white, inner sep=1.5pt}]
+  \def\rx{4.7}\def\ry{2.25}
+  \node[stepbox]  (s1) at ({\rx*cos(90)},{\ry*sin(90)})   {\textbf{1. Read the deposit}\\ title and abstract;\\author keywords are hints};
+  \node[stepbox]  (s2) at ({\rx*cos(30)},{\ry*sin(30)})   {\textbf{2. Decide what it's about}\\ the central topic, not just the method};
+  \node[stepbox]  (s3) at ({\rx*cos(-30)},{\ry*sin(-30)}) {\textbf{3. Match the approved list}\\ 2--4 headings, most central first};
+  \node[stepbox]  (s4) at ({\rx*cos(-90)},{\ry*sin(-90)}) {\textbf{4. Not on the list?}\\ look it up at LC;\\record it as PROPOSED};
+  \node[stepbox]  (s5) at ({\rx*cos(-150)},{\ry*sin(-150)}) {\textbf{5. Flag the judgment calls}\\ unclear topic $\cdot$ community\\terms $\cdot$ too little info};
+  \node[human] (s6) at ({\rx*cos(150)},{\ry*sin(150)}) {\textbf{6. Subject librarian}\\\textbf{\looplabel}\\ approve, revise, or ask the author};
+  \draw[arr] (s1) -- (s2); \draw[arr] (s2) -- (s3); \draw[arr] (s3) -- (s4);
+  \draw[arr] (s4) -- (s5); \draw[arr] (s5) -- (s6); \draw[arr] (s6) -- (s1);
+  \node[font=\footnotesize\itshape, text=statprimary!70, align=center] at (0,0) {repeat for\\each deposit};
+  \ifnum\loopsources=1
+    \node[src, anchor=south] at ([yshift=1pt]s1.north) {repository-deposits.xlsx};
+    \node[src, anchor=north] at ([yshift=-1pt]s3.south) {subject-vocabulary.csv};
+    \node[src, anchor=north] at ([yshift=-1pt]s4.south) {id.loc.gov lookup};
+    \node[font=\tiny\itshape, text=statdefinition!90!black, fill=white, inner sep=1pt] at (-5.25,0) {sent for review};
+  \fi
+\end{tikzpicture}}

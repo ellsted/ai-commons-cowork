@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Office lock files
+~$*
+
+# Demo output (created when you run the subject-tagging demo)
+Subjects-Demo/repository-deposits.subjects.xlsx
+Subjects-Demo/subject-tagging-report*.md
+
+# Quarto / LaTeX build files
+presentation/*.aux
+presentation/*.log
+presentation/*.tex.bak
+presentation/intro-to-claude-cowork.tex
+presentation/intro-to-claude-cowork_files/
