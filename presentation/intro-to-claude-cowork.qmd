@@ -101,11 +101,179 @@ Four things to watch for in both demos:
 
 ::::
 
-# Demo 1
+# Demo 1: Workshop Slides
 
-## Demo 1
+## Upcoming Workshop
 
-<!-- TODO (Jordan): Building slide decks with Claude Cowork (15 min) -->
+You have been asked to give a 45-minute workshop to a group of undergraduate students on reproducible research. The students come from various programs, and their coding skills are unclear.
+
+Let's generate a slide deck and a facilitator outline for the workshop. 
+
+## Start with an organized folder
+
+:::: {.columns}
+
+::: {.column width="52%"}
+```{=latex}
+\vspace{0.4em}
+\footnotesize
+\begin{tabular}{@{}l@{\hspace{0.8em}}l@{}}
+\texttt{\textbf{Presentations-Demo/}} & \\[0.3em]
+\texttt{\ \ brief.md} & \textcolor{statsecondary}{\textit{this deck}} \\[0.15em]
+\texttt{\ \ presentation-guidelines.md} & \textcolor{statsecondary}{\textit{every deck}} \\[0.15em]
+\texttt{\ \ library-template.pptx} & \textcolor{statsecondary}{\textit{the look}} \\[0.15em]
+\texttt{\ \ sources/} & \textcolor{statsecondary}{\textit{what Claude reads}} \\
+\texttt{\ \ \ \ articles/} & \\
+\texttt{\ \ \ \ images/} & \\
+\texttt{\ \ \ \ Intro-to-FAIR.pdf} & \\
+\texttt{\ \ \ \ TuringWay-*.md} & \\[0.15em]
+\texttt{\ \ outputs/} & \textcolor{statsecondary}{\textit{what Claude writes}} \\
+\end{tabular}
+```
+:::
+
+::: {.column width="48%"}
+\small
+
+- **One folder per task.** Claude sees only the folder you connect, so everything the task needs goes in it, and nothing else.
+- **Inputs apart from outputs.** Claude reads from `sources/` and writes to `outputs/`. The originals stay as they are.
+- **Names that explain themselves.** Claude, like a new colleague, uses file and folder names to find its way.
+:::
+
+::::
+
+\vspace{0.4em}
+\small The deck that Claude builds in this demonstration teaches undergraduates similar habits.
+
+## Context: the brief and the guidelines
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{=latex}
+\begin{block}{brief.md = the assignment}
+\small
+\begin{itemize}
+\item \textbf{One deck:} a 50-minute workshop on reproducible research
+\item \textbf{Audience:} first- and second-year undergraduates, no coding
+\item \textbf{Goals and timing:} three learning outcomes, section by section
+\item \textbf{Deliverables:} an outline, the deck, a facilitator handout
+\end{itemize}
+\end{block}
+```
+:::
+
+::: {.column width="50%"}
+```{=latex}
+\begin{block}{presentation-guidelines.md = house rules}
+\small
+\begin{itemize}
+\item \textbf{Every deck,} not just this one
+\item \textbf{Accessibility:} alt text, large fonts, never color alone
+\item \textbf{Sources:} use only \texttt{sources/}; APA citations
+\item \textbf{Files:} never overwrite; save a new version
+\end{itemize}
+\end{block}
+```
+:::
+
+::::
+
+\vspace{0.5em}
+\small Libraries already work this way: an assignment sheet for one project, a style guide for all of them. If the two conflict, the guidelines win, and Claude has to say so.
+
+## Why put context in files?
+
+```{=latex}
+\begin{definitionblock}[Context]
+Everything Claude has to work from: your prompt, the files it reads, and the conversation so far. Claude knows nothing about your audience, sources, or standards unless something in its context tells it.
+\end{definitionblock}
+```
+
+\small
+
+- **Write it once, use it again.** For the next deck, write a new brief. The guidelines carry over unchanged.
+- **It frames the tone.** The brief states the session's purpose ("conceptual, not technical"), limiting unwanted tangents.
+- **It says what "done" looks like.** The brief's test: a colleague who didn't build the deck can teach from it.
+- **Gaps become flags, not guesses.** Claims without a source get marked **[NEEDS SOURCE]** instead of a made-up citation.
+
+## Writing a quality prompt
+
+:::: {.columns}
+
+::: {.column width="40%"}
+```{=latex}
+\begin{block}{Vague}
+\small ``Make a presentation about reproducible research.''
+\end{block}
+\vspace{0.3em}
+\small
+Claude has to guess the audience, length, sources, look, and where to save. It will fill every gap with something plausible.
+```
+:::
+
+::: {.column width="60%"}
+```{=latex}
+\begin{block}{Specific}
+\small ``\textcolor{statsecondary}{\textbf{A}}~Read brief.md and presentation-guidelines.md. \textcolor{statsecondary}{\textbf{B}}~Write an outline of the reproducible research workshop to outputs/outline.md. \textcolor{statsecondary}{\textbf{C}}~Use only the files in sources/. \textcolor{statsecondary}{\textbf{D}}~Stop after the outline so I can review it.''
+\end{block}
+\vspace{0.2em}
+\footnotesize
+\begin{itemize}
+\item \textcolor{statsecondary}{\textbf{A · Point to the context.}} The files hold the details.
+\item \textcolor{statsecondary}{\textbf{B · Name the result.}} What to make, and where to save it.
+\item \textcolor{statsecondary}{\textbf{C · Set limits.}} What Claude may and may not use.
+\item \textcolor{statsecondary}{\textbf{D · Add a checkpoint.}} Check the plan before Claude builds.
+\end{itemize}
+```
+:::
+
+::::
+
+## Security and privacy
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Before you connect a folder**
+
+\small
+
+- Claude can **read and change anything** in that folder, including its subfolders.
+- **Leave out** what you wouldn't hand a colleague: student records, patron data, personnel files, passwords.
+- **Check license terms** before adding licensed e-resources. This demo uses only open-access articles and CC BY materials.
+- **Follow Yale's guidance** on which data can go into which AI tools.
+:::
+
+::: {.column width="50%"}
+**Guardrails that help**
+
+\small
+
+- **Permissions (the app):** one folder only, and Claude must ask before reaching another. Manual mode asks before each action.
+- **Guidelines (your file):** "Never delete, rename, replace, or overwrite existing files." The second build was saved as `-v2.pptx`; the first deck is still there.
+- **You review:** the outline, every **[NEEDS SOURCE]** flag, and the list of files Claude made.
+:::
+
+::::
+
+## Live run
+
+![](assets/D1_01-Prompt.png){width=100% height=74% fig-align="center"}
+
+\small I type in my specific prompt and select `Presentations-Demo` under "Add Folder"
+
+## Live run
+
+![](assets/D1_02-OutlineCheck.png){width=100% height=74% fig-align="center"}
+
+\small Claude reads through `brief.md` and `presentation-guidelines.md` and creates **outline.md** for review.
+
+## Live run
+
+![](assets/D1_03-Slides.png){width=100% height=74% fig-align="center"}
+
+\small Once I approve outline.md, Claude generates **reproducible-research-workshop.pptx** and **facilitator-handout.md** in my output folder and provides a summary in the chat.
 
 ## Questions?
 
